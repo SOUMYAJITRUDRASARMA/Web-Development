@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialBook</title>
+    <style>
+        /* Margin: It is the space around an element. Margins are used to move an element up or down on a page as well as left or right. Margin is completely transparent, and it does not have any background color. It clears the area around the element. Each side of the element has a margin size you can change individually. In creating the gap, the margin pushes adjacent elements away.
+
+Padding: It is the space between the element and the related content inside it. It determines how elements look and sit within a container. It also shows the container background around the element in it. Padding can be affected by background colors as it clears the area around the content. To create the gap, it either grows the element size or shrinks the content inside. By default, the size of the element increases.
+
+
+When to use Margin and Padding?
+
+When you are adjusting the layout of your design, you will need to determine whether to adjust the margins or the padding. If the width of your page is fixed, centering an element horizontally is very simple, just assign the value margin: auto. You would also use the margin to set the distance between nearby elements.
+You would change the padding if you want to create the space between the element and the edge of the container, or border.
+Note: Margins are used to add spaces between an image and the description of that image.
+
+CSS Padding is used if we want to create a space between an element and the edge of the container or the border. It is also useful in the requirement of changing the size of the element.  */
+
+/* Any kind of padding, margin syntax --> vertical horizontal */
+
+/* Sticky --> No scrolling */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;  /* Equal width and height if not overridden */
+}
+
+
+/* For dark mode */
+:root {
+    /* These are variables */
+    --body-color: #efefef;
+    --nav-color: #1876f2;
+    --bg-color: #fff;
+}
+
+.dark-theme {
+    /* These are variables */
+    --body-color: #2f2f2f;
+    --nav-color: #000;
+    --bg-color: #000;
+}
+
+
+body {
+    background: var(--body-color);
+    transition: background 0.3s;
+}
+
+nav {
+    display: flex;  /* flex means flexible content - resizable */
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-color);
+    padding: 5px 5%;  /* 5px horizontally and 5% vertically */
+    position: sticky;  /* to prevent navbar from scrolling */
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    width: 160px;
+    margin-right: 45px;  /* adds space to right but reducing logo size */
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left ul li {
+    list-style: none;  /* removes list dots */
+    display: inline-block;  /* displays in same line - inline element */
+}
+
+.nav-left ul li img {
+    width: 28px;
+    margin: 0 15px;
+}
+
+.nav-user-icon {
+    margin-left: 30px;
+    cursor: pointer;  /* The cursor is a pointer (when hovered over) and indicates a link */
+}
+
+.nav-user-icon img {
+    width: 40px;
+    border-radius: 50%;  /* so that image is circular */
+}
+
+.search-box {
+    background: #efefef;
+    width: 350px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.search-box img {
+    width: 18px;
+}
+
+.search-box input {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+
+.online {
+    position: relative;
+}
+
+/* The ::after selector inserts something after the content of each selected element(s). Use the content property to specify the content to insert. Use the ::before selector to insert something before the content. */
+.online::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;  /* Circular Image */
+    background: #41db51;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;  /* equally spaced contents */
+    padding: 13px 5%;
+}
+
+.left-sidebar {
+    /* background: #cbdffa;   Testing */
+    flex-basis: 25%;  /* The flex-basis property specifies the initial length of a flexible item. Note: If the element is not a flexible item, the flex-basis property has no effect.*/
+    position: sticky;  /* Sidebars dont scroll, they are static */
+    top: 70px;
+    align-self: flex-start;
+    /* height: 100vh;   Testing */
+}
+
+.right-sidebar {
+    /* background: #cbdffa;   Testing */
+    flex-basis: 25%;  /* The flex-basis property specifies the initial length of a flexible item. Note: If the element is not a flexible item, the flex-basis property has no effect.*/
+    position: sticky;  /* Sidebars dont scroll, they are static */
+    top: 70px;
+    align-self: flex-start;
+    /* height: 100vh;   Testing */
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 4px;
+    color: #626262;
+}
+
+.main-content {
+    flex-basis: 47%;
+}
+
+.imp-links a, .shortcut-links a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    color: #626262;
+    width: fit-content;
+}
+
+.imp-links img {
+    width: 25px;
+    margin-right: 15px;
+}
+
+.imp-links a:last-child {
+    color: #1876f2;
+}
+
+.imp-links {
+    border-bottom: 1px solid #ccc;
+}
+
+.shortcut-links a img {
+    width: 40px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.shortcut-links p {
+    margin: 25px 0;
+    color: #626262;
+    font-weight: 500;
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.right-sidebar h4 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sidebar-title a {
+    text-decoration: none;
+    color: #1876f2;
+    font-size: 12px;
+}
+
+.event {
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.left-event {
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    margin-right: 15px;
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event p {
+    font-size: 12px;
+}
+
+.event a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #1876f2;
+}
+
+.left-event span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #1876f2;
+    color: #fff;
+    font-size: 10px;
+    padding: 10px 0;
+}
+
+.sidebar-ads {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.online-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.online-list .online img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.online-list .online {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.online-list .online::after {
+    /* To get green dot in bottom right corner */
+    top: unset;
+    bottom: 5px;
+}
+
+.story-gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.story {
+    flex-basis: 18%; /* because we will add 5 story | 10% spacing */
+    padding-top: 32%; /* 16:9 ratio --> 16/9 * 18% = 32%  */
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.story img {
+    position: absolute;
+    width: 45px;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+    border: 5px solid #1876f2;
+}
+
+.story p {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.story1 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-1.png); /* gives a layer (linearly increasing downwards) so that text below is more clearly visible */
+}
+
+.story2 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-2.png); /* gives a layer (linearly increasing downwards) so that text below is more clearly visible */
+}
+
+.story3 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-3.png); /* gives a layer (linearly increasing downwards) so that text below is more clearly visible */
+}
+
+.story4 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-4.png); /* gives a layer (linearly increasing downwards) so that text below is more clearly visible */
+}
+
+.story5 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-5.png); /* gives a layer (linearly increasing downwards) so that text below is more clearly visible */
+}
+
+.story.story1 img {
+    /* Not giving space b/t classes means div html tag should have both the classes (no child relation) */
+    /* change position of plus icon to middle downwards */
+    top: unset;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    border: 0;
+    width: 35px;
+}
+
+.write-post-container {
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile img {
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-profile p {
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #626262;
+}
+
+.user-profile small {
+    font-size: 11px;
+}
+
+.post-input-container {
+    padding-left: 55px;
+    padding-top: 20px;
+}
+
+.post-input-container textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    resize: none;  /* not resizable and removes the icon */
+}
+
+.add-post-links {
+    display: flex;
+    margin-top: 10px;
+}
+
+.add-post-links a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #626262;
+    margin-right: 30px;
+    font-size: 13px;
+}
+
+.add-post-links a img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.post-container {
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin: 20px 0;
+}
+
+.user-profile span {
+    font-size: 13px;
+    color: #9a9a9a;
+}
+
+.post-text {
+    color: #9a9a9a;
+    margin: 15px 0;
+    font-size: 15px;
+}
+
+.post-text span {
+    color: #626262;
+    font-weight: 500;
+}
+
+.post-text a {
+    color: #1876f2;
+    text-decoration: none;
+}
+
+.post-img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.post-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.activity-icons div img {
+    width: 18px;
+    margin-right: 10px;
+}
+
+.activity-icons div {
+    /* flex and inline-flex both apply flex layout to children of the container. Container with display:flex behaves like a block-level element itself, while display:inline-flex makes the container behaves like an inline element. */
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.post-profile-icon {
+    display: flex;
+    align-items: center;
+}
+
+.post-profile-icon img {
+    width: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.post-row a {
+    color: #9a9a9a;
+}
+
+.load-more-btn {
+    display: block;
+    margin: auto;  /* auto center */
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #9a9a9a;
+    color: #626262;
+    background: transparent;
+    border-radius: 4px;
+}
+
+.footer {
+    text-align: center;
+    color: #9a9a9a;
+    padding: 10px 0 20px;
+    font-size: 14px;
+}
+
+.settings-menu {
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    /* height: 500px;  Not needed, height will be auto-adjusted acc to content */
+    background: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    top: 109%;
+    right: 5%;
+    max-height: 0;  /* Initially, settings menu is hidden */
+    transition: max-height 0.25s;
+}
+
+/* Not used in html file, used for toggling it into and out of setting-menu */
+.settings-menu-height {
+    max-height: 450px;
+}
+
+.user-profile a {
+    font-size: 12px;
+    color: #1876f2;
+    text-decoration: none;
+}
+
+.settings-menu-inner {
+    padding: 20px;
+}
+
+.settings-menu hr {
+    border: 0;
+    height: 1px;
+    background: #9a9a9a;
+    margin: 15px 0;
+}
+
+.settings-links {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.settings-links .settings-icon {
+    width: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.settings-links a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #626262;
+}
+
+#dark-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ccc;
+    width: 45px;
+    border-radius: 15px;
+    padding: 2px 3px;
+    cursor: pointer;  /* The cursor is a pointer (when hovered over) and indicates a link */
+    display: flex;
+    transition: padding-left 0.5s, background 0.5s;
+}
+
+#dark-btn span {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Not used in html file, used for toggling it into and out of dark-btn */
+#dark-btn.dark-btn-on {
+    padding-left: 23px;
+    background: #2f2f2f;
+}
+    </style>
+    <script src="https://kit.fontawesome.com/5d6946b180.js" crossorigin="anonymous"></script> <!-- For icons -->
+</head>
+<body>
+
+    <!-- Navbar -->
+    <!-- 2 columns -> Left - logo, icons   right - search bar, user icons -->
+    <nav>
+        <div class = "nav-left">
+            <img src="images/logo.png" alt="SOCIAL BOOK" class="logo">
+            <ul>
+                <li><img src="images/notification.png"></li>
+                <li><img src="images/inbox.png"></li>
+                <li><img src="images/video.png"></li>
+            </ul>
+        </div>
+        <div class = "nav-right">
+            <div class="search-box">
+                <!-- The placeholder attribute specifies a short hint that describes the expected value of a search field (e.g. a sample value or a short description of the expected format). The short hint is displayed in the text field before the user enters a value. -->
+                <img src="images/search.png">
+                <input type="text" placeholder="Search">
+            </div>
+            <div class="nav-user-icon online" onclick="settingsMenuToggle()">
+                <img src="images/profile-pic.png">
+            </div>
+        </div>
+
+        <!-- Drop down menu from profile picture -->
+        <div class="settings-menu">
+            <!-- Toggle dark mode -->
+            <div id="dark-btn">
+                <span></span> <!-- This span is our white circle, moves left and right, selected and de-selected -->
+            </div>
+
+            <div class="settings-menu-inner">
+                <!-- Personal Options -->
+                <div class="user-profile">
+                    <img src="images/profile-pic.png">
+                    <div>
+                        <p>John Nicholson</p>
+                        <a href="#">See your profile</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="user-profile">
+                    <img src="images/feedback.png">
+                    <div>
+                        <p>Give Feedback</p>
+                        <a href="#">Help us to improve the new design</a>
+                    </div>
+                </div>
+                <hr>
+
+                <!-- Other Options -->
+                <div class="settings-links">
+                    <img src="images/setting.png" class="settings-icon">
+                    <a href="#">Settings and Privacy <img src="images/arrow.png" width="10px"></a>
+                </div>
+                <div class="settings-links">
+                    <img src="images/help.png" class="settings-icon">
+                    <a href="#">Help and Support <img src="images/arrow.png" width="10px"></a>
+                </div>
+                <div class="settings-links">
+                    <img src="images/display.png" class="settings-icon">
+                    <a href="#">Display and Accessibility <img src="images/arrow.png" width="10px"></a>
+                </div>
+                <div class="settings-links">
+                    <img src="images/logout.png" class="settings-icon">
+                    <a href="#">Logout <img src="images/arrow.png" width="10px"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Now we need 3 columns for our contents -->
+    <div class="container">
+        <!-- --------------------------  LEFT  SIDEBAR  -------------------------- -->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="#"><img src="images/news.png">Latest News</a>
+                <a href="#"><img src="images/friends.png">Friends</a>
+                <a href="#"><img src="images/group.png">Group</a>
+                <a href="#"><img src="images/marketplace.png">Marketplace</a>
+                <a href="#"><img src="images/watch.png">Watch</a>
+                <a href="#">See More</a>
+            </div>
+            <div class="shortcut-links">
+                <p>Your Shortcuts</p>
+                <a href="#"><img src="images/shortcut-1.png">Web Developers</a>
+                <a href="#"><img src="images/shortcut-2.png">Web Design Course</a>
+                <a href="#"><img src="images/shortcut-3.png">Full Stack Development</a>
+                <a href="#"><img src="images/shortcut-4.png">Website Experts</a>
+            </div>
+        </div>
+
+
+
+
+        <!-- --------------------------  MAIN  CONTENT  -------------------------- -->
+        <div class="main-content">
+            <!-- We are going to add some stories here -->
+            <div class="story-gallery">
+                <div class="story story1">
+                    <img src="images/upload.png">
+                    <p>Post Story</p>
+                </div>
+                <div class="story story2">
+                    <img src="images/member-1.png">
+                    <p>Alison</p>
+                </div>
+                <div class="story story3">
+                    <img src="images/member-2.png">
+                    <p>Jackson</p>
+                </div>
+                <div class="story story4">
+                    <img src="images/member-3.png">
+                    <p>Samona</p>
+                </div>
+                <div class="story story5">
+                    <img src="images/member-4.png">
+                    <p>John Doe</p>
+                </div>
+            </div>
+
+            <!-- We are going to add option for us to post here -->
+            <div class="write-post-container">
+                <div class="user-profile">
+                    <img src="images/profile-pic.png">
+                    <div>
+                        <p>John Nicholson</p>
+                        <small>Public <i class="fa-solid fa-caret-down"></i></small>
+                    </div>
+                </div>
+
+                <div class="post-input-container">
+                    <textarea rows="3" placeholder="What's on your mind, John?"></textarea>
+                    <div class="add-post-links">
+                        <a href="#"><img src="images/live-video.png"> Live Video</a>
+                        <a href="#"><img src="images/photo.png"> Photo/Video</a>
+                        <a href="#"><img src="images/feeling.png"> Feeling Activity</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- We are going to add some posts here -->
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="user-profile">
+                        <img src="images/profile-pic.png">
+                        <div>
+                            <p>John Nicholson</p>
+                            <span>June 24 2021, 14:40 pm</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-v"></i></a>
+                </div>
+                <p class="post-text">Kanko is noob. Don't watch his noobness, subcribe <span>@SRS Youtube Channel</span>, watch my pro Youtube Channel for pro gameplay. <a href="https://www.facebook.com/soumyajit.rudrasarma" target="_blank">#SRS</a> <a href="https://www.youtube.com/channel/UCLa8WFUIk4C7rTJO1AEUFew" target="_blank">#YoutubeChannel</a></p>
+                <img src="images/feed-image-1.png" class="post-img">
+
+                <!-- Now icons for reply, activities, etc -->
+                <!-- Left side -> icons, right side -> user's profile image -->
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="images/like-blue.png"> 120</div>
+                        <div><img src="images/comments.png"> 45</div>
+                        <div><img src="images/share.png"> 20</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="images/profile-pic.png"> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="user-profile">
+                        <img src="images/profile-pic.png">
+                        <div>
+                            <p>John Nicholson</p>
+                            <span>June 24 2021, 14:40 pm</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-v"></i></a>
+                </div>
+                <p class="post-text">Lol 2nd one, still the same. Kanko is noob. Don't watch his noobness, subcribe <span>@SRS Youtube Channel</span>, watch my pro Youtube Channel for pro gameplay. <a href="https://www.facebook.com/soumyajit.rudrasarma" target="_blank">#SRS</a> <a href="https://www.youtube.com/channel/UCLa8WFUIk4C7rTJO1AEUFew" target="_blank">#YoutubeChannel</a></p>
+                <img src="images/feed-image-2.png" class="post-img">
+
+                <!-- Now icons for reply, activities, etc -->
+                <!-- Left side -> icons, right side -> user's profile image -->
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="images/like.png"> 120</div>
+                        <div><img src="images/comments.png"> 45</div>
+                        <div><img src="images/share.png"> 20</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="images/profile-pic.png"> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="user-profile">
+                        <img src="images/profile-pic.png">
+                        <div>
+                            <p>John Nicholson</p>
+                            <span>June 24 2021, 14:40 pm</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-v"></i></a>
+                </div>
+                <p class="post-text">Lol 3rd one, still the same. Kanko is noob. Don't watch his noobness, subcribe <span>@SRS Youtube Channel</span>, watch my pro Youtube Channel for pro gameplay. <a href="https://www.facebook.com/soumyajit.rudrasarma" target="_blank">#SRS</a> <a href="https://www.youtube.com/channel/UCLa8WFUIk4C7rTJO1AEUFew" target="_blank">#YoutubeChannel</a></p>
+                <img src="images/feed-image-3.png" class="post-img">
+
+                <!-- Now icons for reply, activities, etc -->
+                <!-- Left side -> icons, right side -> user's profile image -->
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="images/like.png"> 120</div>
+                        <div><img src="images/comments.png"> 45</div>
+                        <div><img src="images/share.png"> 20</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="images/profile-pic.png"> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="user-profile">
+                        <img src="images/profile-pic.png">
+                        <div>
+                            <p>John Nicholson</p>
+                            <span>June 24 2021, 14:40 pm</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-v"></i></a>
+                </div>
+                <p class="post-text">Lol 4th one, still the same. Kanko is noob. Don't watch his noobness, subcribe <span>@SRS Youtube Channel</span>, watch my pro Youtube Channel for pro gameplay. <a href="https://www.facebook.com/soumyajit.rudrasarma" target="_blank">#SRS</a> <a href="https://www.youtube.com/channel/UCLa8WFUIk4C7rTJO1AEUFew" target="_blank">#YoutubeChannel</a></p>
+                <img src="images/feed-image-4.png" class="post-img">
+
+                <!-- Now icons for reply, activities, etc -->
+                <!-- Left side -> icons, right side -> user's profile image -->
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="images/like.png"> 120</div>
+                        <div><img src="images/comments.png"> 45</div>
+                        <div><img src="images/share.png"> 20</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="images/profile-pic.png"> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="user-profile">
+                        <img src="images/profile-pic.png">
+                        <div>
+                            <p>John Nicholson</p>
+                            <span>June 24 2021, 14:40 pm</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-v"></i></a>
+                </div>
+                <p class="post-text">Lol 5th one, still the same. Kanko is noob. Don't watch his noobness, subcribe <span>@SRS Youtube Channel</span>, watch my pro Youtube Channel for pro gameplay. <a href="https://www.facebook.com/soumyajit.rudrasarma" target="_blank">#SRS</a> <a href="https://www.youtube.com/channel/UCLa8WFUIk4C7rTJO1AEUFew" target="_blank">#YoutubeChannel</a></p>
+                <img src="images/feed-image-5.png" class="post-img">
+
+                <!-- Now icons for reply, activities, etc -->
+                <!-- Left side -> icons, right side -> user's profile image -->
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="images/like.png"> 120</div>
+                        <div><img src="images/comments.png"> 45</div>
+                        <div><img src="images/share.png"> 20</div>
+                    </div>
+                    <div class="post-profile-icon">
+                        <img src="images/profile-pic.png"> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="load-more-btn">Load More</button>
+        </div>
+
+
+
+
+        <!-- --------------------------  RIGHT  SIDEBAR  -------------------------- -->
+        <div class="right-sidebar">
+            <!-- --------------  EVENTS  -------------- -->
+            <div class="sidebar-title">
+                <h4>Events</h4>
+                <a href="#">See All</a>
+            </div>
+            <!-- 2 columns in event -> Date (left), Event Name (right) -->
+            <div class="event">
+                <div class="left-event">
+                    <h3>18</h3>
+                    <span>March</span>
+                </div>
+                <div class="right-event">
+                    <h4>Social Media</h4>
+                    <p><i class="fa-solid fa-location-dot"></i> Willson Tech Park</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <div class="event">
+                <div class="left-event">
+                    <h3>22</h3>
+                    <span>June</span>
+                </div>
+                <div class="right-event">
+                    <h4>Mobile Marketing</h4>
+                    <p><i class="fa-solid fa-location-dot"></i> Willson Tech Park</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+
+            <!-- --------------  ADVERTISEMENT  -------------- -->
+            <div class="sidebar-title">
+                <h4>Advertisement</h4>
+                <a href="#">Close</a>
+            </div>
+            <img src="images/advertisement.png" class="sidebar-ads">
+            
+            <!-- --------------  USERS ACTIVE  -------------- -->
+            <div class="sidebar-title">
+                <h4>Message</h4>
+                <a href="#">Hide Chat</a>
+            </div>
+            <!-- 2 columns in event -> User Image (left), User Name (right) -->
+            <div class="online-list">
+                <div class="online">
+                    <img src="images/member-1.png">
+                </div>
+                <p>Alison Mina</p>
+            </div>
+            <div class="online-list">
+                <div class="online">
+                    <img src="images/member-2.png">
+                </div>
+                <p>Jackson Aston</p>
+            </div>
+            <div class="online-list">
+                <div class="online">
+                    <img src="images/member-3.png">
+                </div>
+                <p>Samona Rose</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Copyright Things -->
+    <div class="footer">
+        <p>Copyright 2022 - Soumyajit Rudra Sarma</p>
+    </div>
+
+    <!-- Connecting srcipt at last -->
+    <!-- Scripts, historically, blocked additional resources from being downloaded more quickly. By placing them at the bottom, your style, content, and media could download more quickly giving the perception of improved performance. -->
+    <script >
+        var settingsMenu = document.querySelector(".settings-menu");
+        var darkBtn = document.getElementById("dark-btn");
+
+        function settingsMenuToggle()
+        {
+            settingsMenu.classList.toggle("settings-menu-height");
+        }
+
+        darkBtn.onclick = function()
+        {
+            darkBtn.classList.toggle("dark-btn-on");
+            document.body.classList.toggle("dark-theme");
+        
+            if(localStorage.getItem("theme") == "light")
+            {
+                localStorage.setItem("theme", "dark");
+            }
+            else
+            {
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+
+
+        // We wan't our choice of dark/light them to persist on re-visits/reloads, so we will use localStorage
+        // Executed by default on load, as it is in global scope
+        if(localStorage.getItem("theme") == "light")
+        {
+            darkBtn.classList.remove("dark-btn-on");
+            document.body.classList.remove("dark-theme");
+        }
+        else if(localStorage.getItem("theme") == "dark")
+        {
+            darkBtn.classList.add("dark-btn-on");
+            document.body.classList.add("dark-theme");
+        }
+        else
+        {
+            // no such local storage, maybe first time or cache cleared ...
+            localStorage.setItem("theme", "light");
+        }
+    </script>
+</body>
+</html>
